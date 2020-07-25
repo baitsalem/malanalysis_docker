@@ -1,41 +1,23 @@
-install : 
-	sudo apt -qy python \ 
-        python-pip \ 
-      	python-dev \
-        libffi-dev \
-        libssl-dev \
-        python-virtualenv \ 
-        python-setuptools \
-        libjpeg-dev \
-        zlib1g-dev \
-        swig  \
-        mongodb \ 
-        postgresql \ 
-        libpq-dev \
-	qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils python-libvirt \	  
-	libcap2-bin \
-        libguac-client-rdp0 \ # skip the two next installation if i want only rdp support 
-        libguac-client-vnc0 \
-        libguac-client-ssh0 \
-        guacd \
-        lsof \
-        psmisc \
-	tcpdump \
-
+install :
+	 apt-get -qy update	
+	 apt-get -qy install  python  python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev swig postgresql libpq-dev qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils python-libvirt libcap2-bin lsof psmisc tcpdump 
+	# install mongodb
+	 apt-get install dirmngr gnupg apt-transport-https software-properties-common ca-certificates curl
+	curl -fsSL https://www.mongodb.org/static/pgp/server-4.2.asc |  apt-key add -
+	 add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
+	 apt update
+	 apt install mongodb-org
 	# manage tcpdump
-	sudo groupadd pcap
-	sudo usermod -a -G pcap cuckoo
-	sudo chgrp pcap /usr/sbin/tcpdump
-	sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
-        # or sudo chmod +s /usr/sbin/tcpdump and uninstall libcap2-bin
-
+	 groupadd pcap
+	 usermod -a -G pcap cuckoo
+	 chgrp pcap /usr/sbin/tcpdump
+	 setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+	# or  chmod +s /usr/sbin/tcpdump and uninstall libcap2-bin
 	#install M2crypto
-  	pip install M2Crypto
-
-
+	pip install M2Crypto
 	#install cuckoo
-	sudo adduser cuckoo
-	sudo usermod -a -G libvirtd cuckoo
-	sudo pip install -U pip setuptools
-	sudo pip install -U cuckoo
+	 adduser cuckoo
+	 usermod -a -G libvirtd cuckoo
+	 pip install -U pip setuptools
+	 pip install -U cuckoo
 	

@@ -17,4 +17,5 @@ if [[ -z $RAM_SIZE ]] || [[ -z $IMAGE_PATH ]]; then
 	exit
 fi
 
-qemu-system-x86_64 -net nic,model=rtl8139 -m $RAM_SIZE  -hda $IMAGE_PATH -vnc :0,password -monitor stdio 
+#printf "change vnc password\n%s\n" MYPASSWORD | 
+qemu-system-x86_64 -net nic,model=rtl8139 -m $RAM_SIZE  -hda $IMAGE_PATH -vnc 0.0.0.0:0  

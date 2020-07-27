@@ -6,6 +6,6 @@ if [ ! -e /dev/kvm ]; then
    mknod /dev/kvm c 10 $(grep '\<kvm\>' /proc/misc | cut -f 1 -d' ')
 fi
 
-cuckoo
+cuckoo --cwd /opt/cuckoo
 
 

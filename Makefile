@@ -21,7 +21,6 @@ install :
 	 chgrp pcap /usr/sbin/tcpdump
 	 setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
 	# or  chmod +s /usr/sbin/tcpdump and uninstall libcap2-bin
-
-configure:
+	
 	mkdir /opt/cuckoo
 	chown cuckoo:cuckoo /opt/cuckoo

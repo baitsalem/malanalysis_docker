@@ -24,3 +24,4 @@ install :
 	
 	mkdir /opt/cuckoo
 	chown cuckoo:cuckoo /opt/cuckoo
+	mkdir /VMS

@@ -30,7 +30,7 @@ then
 fi
 
 cuckoo --cwd /opt/cuckoo
-cp -r /src/conf /opt/cuckoo/.cuckoo
+cp -r /cuckoo/conf /opt/cuckoo/.cuckoo
 
 echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCouleur}"
 

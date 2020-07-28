@@ -4,7 +4,7 @@ set -e
 
 # Script : entrypoint.sh
 # But : script d'initialisaton du docker destiné à l'analyse de malware et tout particulièrement l'initialisation de cuckoo
-
+# usage : docker run -it --privileged -v /media/usb1/VMS:/VMS -e VM="win12.qcow" cuckoo:1.0
 
 CREQUEST='\e[0;1;35m' # Magenta
 CCOMMANDE='\e[0;1;37m' # Blanc

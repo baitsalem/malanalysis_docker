@@ -1,7 +1,7 @@
 install :
 	 apt-get  update -y
 	 apt-get  upgrade -y 
-	 apt-get  install -y --no-install-recommends build-essential  python  python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev swig postgresql libpq-dev qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils python-libvirt libcap2-bin lsof psmisc tcpdump python-magic 
+	 apt-get  install -y --no-install-recommends build-essential  python  python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev swig postgresql libpq-dev qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils python-libvirt virt-manager libcap2-bin lsof psmisc tcpdump python-magic  
 	# install mongodb
 	 apt-get install -y --no-install-recommends dirmngr gnupg apt-transport-https software-properties-common ca-certificates curl
 	curl -fsSL https://www.mongodb.org/static/pgp/server-4.2.asc |  apt-key add -

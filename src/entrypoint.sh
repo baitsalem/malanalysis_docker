@@ -34,6 +34,9 @@ cp -r /cuckoo/conf /opt/cuckoo/.cuckoo # must be before with all configuration f
 
 echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCouleur}"
 
+virsh net-autostart default
+virsh net-start default
+
 if virt-install --name=cuckoo --vcpus=1 --memory=1024 --disk /VMS/${VM} --import
 then
 	snapshot_name=$(virsh snapshot-create cuckoo | cut -d ' ' -f 3)

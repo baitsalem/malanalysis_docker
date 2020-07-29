@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:stretch
 COPY src /cuckoo
 COPY Makefile /cuckoo
 RUN apt-get -qy update && apt-get -qy install make && cd /cuckoo && make install  

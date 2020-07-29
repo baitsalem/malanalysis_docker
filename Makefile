@@ -1,6 +1,7 @@
 install :
 	 apt-get  update -y
-	 apt-get install -y build-essential apt-utils python python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev 
+	 apt-get install -y build-essential apt-utils python python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev
+	 python -m pip install --upgrade pip 
 	 # install kvm qemu
 	 apt-get install  -y qemu-kvm libvirt-clients libvirt-daemon-system virtinst bridge-utils python-libvirt #virt-manager 
 	 apt-get  install  -y swig
@@ -14,12 +15,12 @@ install :
 	 apt -y update
 	 apt -y install mongodb-org
 	#install M2crypto
-	 pip --use-feature=2020-resolver install M2Crypto
+	 pip  install M2Crypto --use-feature=2020-resolver
 	#install cuckoo
 	 adduser cuckoo
 	 usermod -a -G libvirt cuckoo
-	 pip --use-feature=2020-resolver  install -U pip setuptools
-	 pip --use-feature=2020-resolver  install -U cuckoo
+	 pip install -U pip setuptools --use-feature=2020-resolver
+	 pip install -U cuckoo --use-feature=2020-resolver
 	 #manage tcpdump
 	 groupadd pcap
 	 usermod -a -G pcap cuckoo

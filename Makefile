@@ -1,14 +1,12 @@
 install :
 	 apt-get  update -y
-	 apt-get  upgrade -y 
 	 apt-get install -y build-essential apt-utils python python-pip python-dev libffi-dev libssl-dev python-virtualenv python-setuptools libjpeg-dev zlib1g-dev 
+	 # install kvm qemu
+	 apt-get install  -y qemu-kvm libvirt-clients libvirt-daemon-system virtinst bridge-utils python-libvirt #virt-manager 
 	 apt-get  install  -y swig
-	 apt-get install -y  exim4-daemon-light exim4-config exim4-base bsd-mailx
-	 #apt-get  install  -y --no-install-recommends postgresql 
+	 apt-get  install  -y --no-install-recommends postgresql 
 	 apt-get  install  -y postgresql 
 	 apt-get install -y libpq-dev libcap2-bin lsof psmisc tcpdump python-magic  
-	# install kvm qemu
-	 apt-get install -y qemu-kvm libvirt-clients libvirt-daemon-system virtinst bridge-utils python-libvirt #virt-manager 
 	# install mongodb
 	 apt-get install -y dirmngr gnupg apt-transport-https software-properties-common ca-certificates curl
 	 curl -fsSL https://www.mongodb.org/static/pgp/server-4.2.asc |  apt-key add -

@@ -31,3 +31,6 @@ install :
 	 mkdir /opt/cuckoo
 	 chown cuckoo:cuckoo /opt/cuckoo
 	 mkdir /VMS
+	 chown root:kvm /dev/kvm
+	 service libvirtd start
+	 service virtlogd start

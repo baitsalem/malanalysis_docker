@@ -34,6 +34,13 @@ cp -r /cuckoo/conf /opt/cuckoo/.cuckoo # must be before with all configuration f
 
 echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCouleur}"
 
+#virsh net-undefine default
+#virsh net-destroy default
+#virsh net-list
+#virsh net-define /usr/share/libvirt/networks/default.xml
+#virsh net-start default
+
+
 virsh net-autostart default
 virsh net-start default
 

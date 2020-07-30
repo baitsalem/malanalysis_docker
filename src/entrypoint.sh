@@ -40,7 +40,9 @@ echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCo
 #virsh net-define /usr/share/libvirt/networks/default.xml
 #virsh net-start default
 
-
+chown root:kvm /dev/kvm
+service libvirtd start
+service virtlogd start
 virsh net-autostart default
 virsh net-start default
 

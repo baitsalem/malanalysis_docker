@@ -1,9 +1,13 @@
 <:TIT1:>A/ libvirt-install<:TIT1:>
 
-   <:CMD:>libvirt-install<:CMD:> <:EX:>--name=cuckoo --vcpus=1 --memory=1024 --disk /VMS/win12.qcow --import<:EX:>   <:INFO:>;   installe une nouvelle vm<:INFO:>
+	<:CMD:>libvirt-install<:CMD:> <:EX:>--name=cuckoo --vcpus=1 --memory=1024 --disk /VMS/win12.qcow --import<:EX:>   <:INFO:>;   installe une nouvelle vm<:INFO:>
 
 <:TIT1:>B/ virsh <:TIT1:>
 
-   <:CMD:>show running-config<:CMD:>       <:INFO:>;   affiche la configuration<:INFO:>
+	<:CMD:>virsh list --all<:CMD:>       <:INFO:>;   liste toutes les VM installées <:INFO:>
 
-   
+ <:TIT1:>C/ docker <:TIT1:>
+ 
+	<:CMD:>docker run --privileged<:CMD:> <:EX:>-p 3022:3022 --env RAM_SIZE=2048 -e VM="parrotsec.qcow2" -v /media/usb1/VMS/:/VM parrot:1.0<:EX:> <:INFO:>; Lance le docker parrot:1.0 en mode privileged
+ 
+	<:CMD:>docker system prune -a<:CMD:> <:INFO:>; clean all informaqtion of /var/lib/docker  

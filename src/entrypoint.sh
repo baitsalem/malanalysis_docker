@@ -16,7 +16,10 @@ BLANC='\e[1;37m'
 
 SansCouleur='\e[0;m'
 
+VM_LABEL="cuckoo"
+VM_PLATFORM="windows"
 
+MAC="52:54:00:00:00:01"
 
 # Create the kvm node (required --privileged)
 if [ ! -e /dev/kvm ]; then
@@ -43,25 +46,42 @@ echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCo
 chown root:kvm /dev/kvm
 service libvirtd start
 service virtlogd start
-virsh net-autostart default
+#virsh net-autostart default
 virsh net-start default
 
-if virt-install --name=cuckoo --vcpus=1 --memory=1024 --disk /VMS/${VM} --import
+IP=$(virsh net-dumpxml default | grep "ip address" | awk -F\' '{ print $2}')
+
+if [ -z ${IP} ] ; then
+
+	echo -e "${CERROR}Any IP defined${SansCouleur}"
+	exit 2
+
+fi
+
+virsh net-update default add ip-dhcp-host \
+          "<host mac='${MAC}' \
+           name='cuckoo' ip='${IP}' />" \
+           --live --config
+
+if virt-install --name=${VM_LABEL} --mac=${MAC} --vcpus=1 --memory=1024 --disk /VMS/${VM} --import
 then
 	snapshot_name=$(virsh snapshot-create cuckoo | cut -d ' ' -f 3)
 else
 	echo -e "${CERROR}Can not install cuckoo vm${SansCouleur}"
-	exit 2
+	exit 3
 fi
 
 if [  -z ${snapshot_name} ]
 then
 
 	echo -e "${CERROR}Snapshot creation failed${SansCouleur}"
-	exit 3
+	exit 4
 fi
 
 
+sed -i "s/#VM_LABEL/${VM_LABEL}/g" /cuckoo/conf/kvm.conf 
+sed -i "s/#VM_PLATFORM/${VM_PLATFORM}/g" /cuckoo/conf/kvm.conf 
+sed -i "s/#VM_SNAPSHOT/${snapshot_name}/g" /cuckoo/conf/kvm.conf 
 
 
 

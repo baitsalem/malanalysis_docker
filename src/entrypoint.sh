@@ -32,9 +32,6 @@ then
 	exit 1
 fi
 
-cuckoo --cwd /opt/cuckoo
-cp -r /cuckoo/conf /opt/cuckoo/.cuckoo # must be before with all configuration file
-
 echo -e "${BLANC}Create ${CFILE}/VMS/${VM}${BLANC} vm for cuckoo purpose${SansCouleur}"
 
 #virsh net-undefine default
@@ -79,11 +76,16 @@ then
 	exit 4
 fi
 
-
 sed -i "s/#VM_LABEL/${VM_LABEL}/g" /cuckoo/conf/kvm.conf 
 sed -i "s/#VM_PLATFORM/${VM_PLATFORM}/g" /cuckoo/conf/kvm.conf 
 sed -i "s/#VM_SNAPSHOT/${snapshot_name}/g" /cuckoo/conf/kvm.conf 
 sed -i "s/#VM_IP/${IP}/g" /cuckoo/conf/kvm.conf 
+
+mkdir /opt/cuckoo/.cuckoo  
+cp -r /cuckoo/conf/* /opt/cuckoo/.cuckoo # must be before with all configuration file
+cuckoo --cwd /opt/cuckoo
+
+
 
 
 

@@ -50,6 +50,7 @@ service virtlogd start
 virsh net-start default
 
 IP=$(virsh net-dumpxml default | grep "ip address" | awk -F\' '{ print $2}')
+IP="${IP%.*}.11"
 
 if [ -z ${IP} ] ; then
 
@@ -82,6 +83,7 @@ fi
 sed -i "s/#VM_LABEL/${VM_LABEL}/g" /cuckoo/conf/kvm.conf 
 sed -i "s/#VM_PLATFORM/${VM_PLATFORM}/g" /cuckoo/conf/kvm.conf 
 sed -i "s/#VM_SNAPSHOT/${snapshot_name}/g" /cuckoo/conf/kvm.conf 
+sed -i "s/#VM_IP/${IP}/g" /cuckoo/conf/kvm.conf 
 
 
 

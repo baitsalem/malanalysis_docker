@@ -5,7 +5,6 @@ install :
 	 # install kvm qemu
 	 apt-get install  -y qemu-kvm libvirt-clients libvirt-daemon-system virtinst bridge-utils python-libvirt #virt-manager 
 	 apt-get  install  -y swig
-	 apt-get  install  -y --no-install-recommends postgresql 
 	 apt-get  install  -y postgresql 
 	 apt-get install -y libpq-dev libcap2-bin lsof psmisc tcpdump python-magic  
 	# install mongodb

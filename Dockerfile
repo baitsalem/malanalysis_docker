@@ -26,5 +26,5 @@ EXPOSE 2042
 VOLUME [ "/sys/fs/cgroup" ]
 
 CMD ["/lib/systemd/systemd"]
-CMD /cuckoo/entrypoint.sh
+#CMD /cuckoo/entrypoint.sh
 WORKDIR /root

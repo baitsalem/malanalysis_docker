@@ -8,13 +8,26 @@
 <:TIT1:>B/ virsh <:TIT1:>
 
 	<:CMD:>virsh list --all<:CMD:>       <:INFO:>;   liste toutes les VM installées <:INFO:>
+	<:CMD:>virsh start VM_NAME<:CMD:>       <:INFO:>;  
+	<:CMD:>virsh shutdown VM_NAME<:CMD:>       <:INFO:>;  
+	<:CMD:>virsh destroy VM_NAME<:CMD:>       <:INFO:>;  
+	<:CMD:>virsh net-start NETWORK_NAME<:CMD:>       <:INFO:>;   
 
- <:TIT1:>C/ docker <:TIT1:>
+<:TIT1:>C/ docker <:TIT1:>
  
 	<:CMD:>docker run -it --privileged<:CMD:> <:EX:>-p 3022:3022 --env RAM_SIZE=2048 -e VM="parrotsec.qcow2" -v /media/usb1/VMS/:/VMS parrot:1.0<:EX:> <:INFO:>; Lance le docker parrot:1.0 en mode privileged
 	<:CMD:>docker run --rm -it --privileged<:CMD:> <:EX:>-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -e VM="parrotsec.qcow2" -v /media/usb1/VMS/:/VMS parrot:1.0<:EX:> <:INFO:>; Lance le docker parrot:1.0 en mode privileged
 
+	docker run --name=cuckoo -d --privileged  -v /media/usb1/VMS/:/VMS -v /sys/fs/cgroup:/sys/fs/cgroup:ro  cuckoo:1.0
+	docker run -d ...
+	docker exec -it DOCKER_NAME bash
+	docker rm -f DOCKER_NAME
 
 	<:CMD:>docker system prune -a<:CMD:> <:INFO:>; clean all informaqtion of /var/lib/docker  
 
 	<:CMD:>docker build<:CMD:> <:EX:>--tag=parrot:1.0 .<:EX:> <:INFO:>; Créer un docker dont le nom est parrot:1.0
+
+ <:TIT1:>C/ virt-viewer <:TIT1:>
+
+	<:CMD:>virt-viewer VM_NAME<:CMD:> <:INFO:>; start gui of VM
+
